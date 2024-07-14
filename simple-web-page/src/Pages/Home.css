@@ -1,0 +1,14 @@
+/* src/pages/Home.css */
+.home {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+.recipe {
+    padding: 20px;
+}
+.recipe-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
