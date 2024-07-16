@@ -10,7 +10,7 @@ export const RecipeProvider = ({ children }) => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/recipes/');
+        const response = await axios.get('http://recipe-alb-857639819.us-east-1.elb.amazonaws.com:8000/api/recipes/');
         setRecipes(response.data);
         setLoading(false);
       } catch (error) {
