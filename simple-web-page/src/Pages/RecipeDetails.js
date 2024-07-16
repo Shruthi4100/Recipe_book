@@ -1,8 +1,8 @@
 // src/pages/RecipeDetails.js
 import { useParams } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import './RecipeDetails.css'
+import RecipeContext from '../RecipeContext';
 
 /*''' const recipes = [
   {
@@ -66,7 +66,7 @@ import './RecipeDetails.css'
   },
 ]; '''*/
 
-const RecipeDetails = () => {
+/*'''const RecipeDetails = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -87,7 +87,13 @@ const RecipeDetails = () => {
 
     fetchRecipe();
   }, [id]);
-  console.log('Current recipe:', recipe); // Log current recipe state for debugging
+  console.log('Current recipe:', recipe); // Log current recipe state for debugging '''*/
+  
+  const RecipeDetails = () => {
+    const { id } = useParams();
+    const { recipes, loading } = useContext(RecipeContext);
+    const recipe = recipes.find((r) => r.id === parseInt(id));
+
   if (loading) {
     return <div>Loading...</div>;
   }

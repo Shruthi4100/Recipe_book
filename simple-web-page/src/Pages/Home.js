@@ -1,9 +1,13 @@
 // src/pages/Home.js
-import React from 'react';
-import RecipeCard from '../Components/RecipeCard';
-import './Home.css';
+import React ,{useContext,useState} from 'react';
 
-const recipes = [
+import RecipeCard from '../Components/RecipeCard';
+import './Home.css'
+import './ContactDetails.css'
+import RecipeContext from '../RecipeContext';
+import ContactDetails from './ContactDetails';
+
+/* '''const recipes = [
   {
     id: 1,
     name: 'Spaghetti Carbonara',
@@ -16,19 +20,40 @@ const recipes = [
     description: 'A creamy pasta dish with chicken.',
     image: 'https://eatinginaninstant.com/wp-content/uploads/2022/08/IP-Chicken-Alfredo-8-1200-500x500.jpg',
   },
-]; 
+]; '''*/
 
 
 
 const Home = () => {
+  const { recipes, loading } = useContext(RecipeContext);
+  const [showContact, setShowContact] = useState(false); 
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const toggleContactDetails = () => {
+    setShowContact(!showContact);
+  };
+
   return (
     <div className="recipe">
       <h1 className='recipe-title'>Recipe Book</h1>
+    
     <div className="home">
       {recipes.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
+        
       ))}
-    </div>
+      </div>
+       
+       <button onClick={toggleContactDetails} className='btn'>
+        {showContact ? 'Contact Details' : 'Contact Details'}
+      </button>
+
+     
+      {showContact && <ContactDetails />}
+       
     </div>
   );
 };
